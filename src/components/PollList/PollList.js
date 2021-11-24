@@ -1,13 +1,14 @@
 import { Table, Space, Button } from 'antd';
 import ResultTag from './../ResultTag/ResultTag'
-import entries from './../../mockData.js'
 import PollDetailModal from './../PollDetailModal/PollDetailModal'
 
-const PollList = () => {
+const PollList = ({entries}) => {
 
     const handleDetails = (data) => {
         PollDetailModal(data);
     }
+
+    console.log(entries);
 
 
     const columns = [

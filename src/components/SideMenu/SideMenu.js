@@ -10,7 +10,7 @@ const SideMenu = () => {
                 <p> Nova votação</p>
             </Menu.Item>
             <Menu.Item>
-                <p> Meu perfil</p>
+                <p> Editar perfil</p>
             </Menu.Item>
             <Menu.Item>
                 <p> Sair </p>
