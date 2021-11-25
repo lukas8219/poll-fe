@@ -8,8 +8,8 @@ import user from '../../mockUserData';
 const MainPage = () => {
     return <>
         <Row type="grid">
-            <Col span={3}><SideMenu /></Col>
-            <Col span={21}><UserProfile {...user}/></Col>
+            <Col span={5}><SideMenu {...user}/></Col>   
+            <Col span={19}><UserProfile {...user}/></Col>
         </Row>
     </>
 }
