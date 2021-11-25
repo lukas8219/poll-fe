@@ -1,19 +1,33 @@
-import { ALIAS_KEYS } from '@babel/types';
-import { Form, Input, Avatar } from 'antd';
+import { Form, Input, Avatar, Upload, Button, Row } from 'antd';
+import { UploadOutlined } from '@ant-design/icons'
 
 const UserProfile = ({
     name, email, pic, phoneNumber
 }) => {
 
+    const submit = ({ name, email, phoneNumber }) => {
+        console.log(name, email, phoneNumber);
+    }
+
     return <>
         <Form
-            name="basic" >
+            name="basic"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 8 }}
+            onFinish={submit} >
 
             <Form.Item
-                label="Foto de Perfil"
                 name="pic"
-                style={{ padding: 15 }}>
-                <Avatar size="small" src={pic} />
+                align="center"
+                style={{ padding: 5 }}>
+                <Row align="center" style={{ padding: 15 }}>
+                    <Avatar size={150} src={pic} />
+                </Row>
+                <Row align="center">
+                    <Upload >
+                        <Button icon={<UploadOutlined />}>Editar foto</Button>
+                    </Upload>
+                </Row>
             </Form.Item>
 
             <Form.Item
@@ -34,10 +48,17 @@ const UserProfile = ({
             <Form.Item
                 label="Número de telefone"
                 name="phoneNumber"
-                style={{ padding: 25 }}>
+                style={{ padding: 15 }}>
                 <Input defaultValue={phoneNumber} />
             </Form.Item>
 
+            <Form.Item align="center">
+                <Row align="center">
+                    <Button type="primary" htmlType="submit">
+                        Salvar
+                    </Button>
+                </Row>
+            </Form.Item>
         </Form>
     </>
 }
