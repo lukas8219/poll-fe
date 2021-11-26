@@ -1,4 +1,5 @@
 import { Avatar, Menu, Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 const SideMenu = ({ name, pic }) => {
@@ -15,24 +16,24 @@ const SideMenu = ({ name, pic }) => {
         <Row>
             <Menu defaultSelectedKeys={0} mode="inline">
                 <Menu.Item>
-                    <span> Início</span>
+                    <Link to="/"><span> Início</span></Link>
                 </Menu.Item>
                 <SubMenu title="Votações">
                     <Menu.Item>
-                        <span>Estou participando</span>
+                        <Link to="poll/participating"><span>Estou participando</span></Link>
                     </Menu.Item>
                     <Menu.Item>
-                        <span> Minha autoria</span>
+                        <Link to="/poll/mine"><span> Minha autoria</span></Link>
                     </Menu.Item>
                     <Menu.Item>
-                        <span> Nova votação</span>
+                        <Link to="/poll/new"><span> Nova votação</span></Link>
                     </Menu.Item>
                 </SubMenu>
                 <Menu.Item>
-                    <span> Editar perfil</span>
+                    <Link to="/profile"><span> Editar perfil</span></Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <span> Sair </span>
+                    <Link to="/login"><span> Sair </span></Link>
                 </Menu.Item>
             </Menu>
         </Row>

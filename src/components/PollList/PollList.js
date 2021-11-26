@@ -8,8 +8,6 @@ const PollList = ({entries}) => {
         PollDetailModal(data);
     }
 
-    console.log(entries);
-
 
     const columns = [
         {

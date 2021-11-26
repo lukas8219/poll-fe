@@ -1,9 +1,12 @@
 import './App.css'
-import MainPage from './MainPage/MainPage'
+import InitialRoutes from '../routes/initialRoutes';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
     return <>
-        <MainPage />
+        <Router>
+            <InitialRoutes />
+        </Router>
     </>
 }
 
