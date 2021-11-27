@@ -30,10 +30,10 @@ const SideMenu = ({ name, pic }) => {
                     </Menu.Item>
                 </SubMenu>
                 <Menu.Item>
-                    <Link to="/profile"><span> Editar perfil</span></Link>
+                    <Link to="/profile"><span>Editar perfil</span></Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to="/login"><span> Sair </span></Link>
+                    <Link to="/login"><span>Sair</span></Link>
                 </Menu.Item>
             </Menu>
         </Row>
