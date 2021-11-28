@@ -1,8 +1,13 @@
 import { DislikeOutlined, LikeOutlined } from "@ant-design/icons";
 import { Table, Space, Button } from "antd";
+import VoteButton from "../VoteButton/VoteButton";
 import ResultTag from "./../ResultTag/ResultTag";
 
 const PollList = ({ entries }) => {
+  const log = (record) => {
+    console.log(record);
+  };
+
   const columns = [
     {
       title: "Assunto",
@@ -21,16 +26,7 @@ const PollList = ({ entries }) => {
       title: "Ações",
       key: "action",
       align: "center",
-      render: (text, record, index) => (
-        <Space size="middle">
-          <Button type="primary" style={{backgroundColor: "green", borderColor: "green"}}>
-            <LikeOutlined />
-          </Button>
-          <Button type="primary"style={{backgroundColor: "red", borderColor:"red"}}>
-            <DislikeOutlined />
-          </Button>
-        </Space>
-      ),
+      render: (text, record, index) => <VoteButton record={record?.voted} />,
     },
   ];
 
