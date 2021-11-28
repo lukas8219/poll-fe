@@ -1,5 +1,4 @@
-import { DislikeOutlined, LikeOutlined } from "@ant-design/icons";
-import { Table, Space, Button } from "antd";
+import { Table } from "antd";
 import VoteButton from "../VoteButton/VoteButton";
 import ResultTag from "./../ResultTag/ResultTag";
 
@@ -35,6 +34,8 @@ const PollList = ({ entries }) => {
       className={`clickable-row gx-table-responsive gx-w-100`}
       dataSource={entries}
       columns={columns}
+      style={{ margin: 30 }}
+      pagination={{ pageSize: 6 }}
     />
   );
 };

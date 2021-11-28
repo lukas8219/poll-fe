@@ -24,7 +24,7 @@ const UserProfile = ({
                     <Avatar size={150} src={pic} />
                 </Row>
                 <Row align="center">
-                    <Upload >
+                    <Upload showUploadList={false} maxCount={1} >
                         <Button icon={<UploadOutlined />}>Editar foto</Button>
                     </Upload>
                 </Row>
