@@ -1,0 +1,52 @@
+{
+    "profile": {
+        "id": 1,
+        "name": "Lucas",
+        "profile": "ADMIN",
+        "email": "lucas.c4d@gmail.com",
+        "pic": "https://www.rbsdirect.com.br/imagesrc/26152070.jpg?w=700",
+        "phoneNumber": "51999999999"
+    },
+    "poll": [
+        {
+            "id": 1,
+            "subject": "Tal Votação",
+            "result": "APPROVED"
+        },
+        {
+            "id": 2,
+            "subject": "Outra votação",
+            "voted":"NO",
+            "result": "OCCURRING"
+        },
+        {
+            "id": 3,
+            "subject": "Sair na sexta feira",
+            "voted":"NO",
+            "result": "REPROVED"
+        },
+        {
+            "id": 4,
+            "subject": "Fazer churrasco",
+            "voted":"YES",
+            "result": "APPROVED"
+        },
+        {
+            "id": 5,
+            "subject": "Fazer dieta",
+            "result": "OCCURRING"
+        },
+        {
+            "id": 6,
+            "subject": "Morar na Praia",
+            "voted":"YES",
+            "result": "APPROVED"
+        },
+        {
+            "id": 7,
+            "subject": "Morar na Praia",
+            "voted":"YES",
+            "result": "APPROVED"
+        }
+    ]
+  }

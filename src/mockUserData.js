@@ -1,4 +1,5 @@
 const user = {
+    id: 1,
     name: "Lucas",
     profile: "ADMIN",
     email: "lucas.c4d@gmail.com",

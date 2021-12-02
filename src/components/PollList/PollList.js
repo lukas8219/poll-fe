@@ -1,11 +1,11 @@
 import { Table } from "antd";
 import VoteButton from "../VoteButton/VoteButton";
 import ResultTag from "./../ResultTag/ResultTag";
+import { useSelector } from "react-redux";
 
-const PollList = ({ entries }) => {
-  const log = (record) => {
-    console.log(record);
-  };
+const PollList = () => {
+  const { poll_list } = useSelector((state) => state.poll);
+  const entries = poll_list;
 
   const columns = [
     {
