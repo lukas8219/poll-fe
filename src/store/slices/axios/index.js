@@ -7,14 +7,5 @@ const instanceConfig = {
   },
 };
 
-export default api = axios.create(instanceConfig);
-
-api.interceptors.request.use(
-  (config) => {
-    console.log(config.url);
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+const api = axios.create(instanceConfig);
+export default api;

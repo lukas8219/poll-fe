@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import api from "axios/index";
+import api from './axios/index'
 
 export const PollSlice = createSlice({
   name: "poll",
@@ -33,7 +33,7 @@ export const fetchPollById = (id) => (dispatch, getState) => {
 
 export const fetchPollList = (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      api({method:"get", url:"/poll/?", baseURL:"http://localhost:3000"})
+      api.get("/poll/?")
       .then((response) => {
           dispatch(setPollList(response.data));
           resolve(response);
@@ -42,6 +42,20 @@ export const fetchPollList = (dispatch, getState) => {
           reject(error);
       })
     });
+}
+
+export const createPoll = (data) => (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+        api.post("/poll", data)
+        .then((response) => {
+            dispatch(fetchPollList);
+            console.log("Created successfully!")
+            resolve(response);
+        })
+        .catch((error) => {
+            reject(error);
+        })
+      });
 }
 
 
