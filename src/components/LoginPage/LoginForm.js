@@ -13,7 +13,6 @@ function LoginForm() {
 
     const onFinish = () => {
         dispatch(authenticate({email: email, password: password}))
-        navigate("/");
     }
 
     return <>
