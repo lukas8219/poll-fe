@@ -1,10 +1,10 @@
-import {Navigate, Route} from 'react-router-dom';
+import LoginPage from '../components/LoginPage/LoginPage';
 
 function PrivateRoute({component: Component, ...rest}) {
     if(localStorage.getItem("token")){
-        return <Route {...rest} ><Component /></ Route>
+        return <Component />
     } else {
-        return <Route ><Navigate to={{pathname: '/login'}} /></Route>
+        return <LoginPage />
     }
 }
 

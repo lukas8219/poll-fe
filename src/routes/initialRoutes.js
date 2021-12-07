@@ -6,8 +6,7 @@ import LoginPage from '../components/LoginPage/LoginPage'
 function InitialRoutes() {
     return (
         <Routes>
-                <PrivateRoute path="/" component={<MainPage />} />
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="*" element={<PrivateRoute component={MainPage} />} />
         </Routes >
     );
 }
