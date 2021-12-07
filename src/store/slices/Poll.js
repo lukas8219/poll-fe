@@ -33,7 +33,7 @@ export const fetchPollById = (id) => (dispatch, getState) => {
 
 export const fetchPollList = (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      api.get("/poll/?")
+      api.get("v1/poll/")
       .then((response) => {
           dispatch(setPollList(response.data));
           resolve(response);
@@ -46,7 +46,7 @@ export const fetchPollList = (dispatch, getState) => {
 
 export const createPoll = (data) => (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-        api.post("/poll", data)
+        api.post("v1/poll", data)
         .then((response) => {
             dispatch(fetchPollList);
             console.log("Created successfully!")

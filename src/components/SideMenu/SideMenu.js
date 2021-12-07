@@ -1,8 +1,12 @@
 import { Avatar, Menu, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import SubMenu from 'antd/lib/menu/SubMenu';
+import { useNavigate } from 'react-router';
 
 const SideMenu = ({ name, pic }) => {
+
+
+    const navigate = useNavigate();
 
     return <>
         <Row align="center">
@@ -32,7 +36,11 @@ const SideMenu = ({ name, pic }) => {
                 <Menu.Item>
                     <Link to="/profile"><span>Editar perfil</span></Link>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item onClick={() => {
+                    localStorage.removeItem("token");
+                    console.log("Navigating...");
+                    navigate('../', {replace: true});
+                } }>
                     <Link to="/login"><span>Sair</span></Link>
                 </Menu.Item>
             </Menu>
