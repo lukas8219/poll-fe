@@ -7,7 +7,7 @@ export const PollSlice = createSlice({
     poll_item: {},
   },
   reducers: {
-    setPollList: (state, action) => {
+    setPollList: (state, action) => { 
       state.poll_list = action.payload
     },
     setPollItem: (state, action) => {

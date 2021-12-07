@@ -17,6 +17,12 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
