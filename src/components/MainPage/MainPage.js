@@ -1,16 +1,18 @@
 import { Row, Col } from 'antd';
 import SideMenu from '../SideMenu/SideMenu';
-import user from '../../mockUserData';
 import MainRoutes from '../../routes/mainRoutes';
 
 const MainPage = () => {
+
+    var user = JSON.parse(localStorage.getItem("user"));
+
     return <>
         <Row type="grid">
             <Col span={5}>
-                <SideMenu {...user} />
+                <SideMenu name={user?.name} pic={user?.pic} />
             </Col>
             <Col span={19}>
-                <MainRoutes />
+                <MainRoutes user={user}/>
             </Col>
         </Row>
     </>

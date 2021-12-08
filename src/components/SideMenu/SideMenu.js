@@ -1,13 +1,8 @@
 import { Avatar, Menu, Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import SubMenu from 'antd/lib/menu/SubMenu'
-import { useNavigate } from 'react-router'
-import { useState } from 'react'
 
 const SideMenu = ({ name, pic }) => {
-    const [refresh, setRefresh] = useState(false)
-    const navigate = useNavigate()
-
     return (
         <>
             <Row align="center">
@@ -46,6 +41,7 @@ const SideMenu = ({ name, pic }) => {
                     <Menu.Item
                         onClick={() => {
                             localStorage.removeItem('token')
+                            localStorage.removeItem('user')
                             window.location.reload()
                         }}
                     >

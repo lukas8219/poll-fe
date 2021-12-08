@@ -49,7 +49,6 @@ export const createPoll = (data) => (dispatch, getState) => {
         api.post("v1/poll", data)
         .then((response) => {
             dispatch(fetchPollList);
-            console.log("Created successfully!")
             resolve(response);
         })
         .catch((error) => {

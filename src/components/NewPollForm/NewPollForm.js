@@ -10,6 +10,13 @@ function NewPollForm() {
 
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
+  const [expiresAt, setExpiresAt] = useState();
+
+  const clearFields = () => {
+    setDescription(null);
+    setSubject(null);
+    setExpiresAt(null);
+  }
 
   const handleSubjectChange = (event) =>{
     const value = event?.target?.value;
@@ -25,18 +32,18 @@ function NewPollForm() {
     const data = {
       subject: subject,
       description: description,
-      result: "OCCURRING"
+      expiresAt: expiresAt,
     };
-
     dispatch(createPoll(data))
     clearFields();
   };
 
-
-  const clearFields = () => {
-    setDescription(null);
-    setSubject(null);
+  const handleExpiresAtSelect = (e) => {
+    const date = e?.format('YYYY-MM-DDTHH:MM:ss');
+    setExpiresAt(date);
   }
+
+  
   
   return (
     <>
@@ -57,7 +64,7 @@ function NewPollForm() {
           </Form.Item>
 
           <Form.Item label="Término em">
-            <DatePicker showTime={{ format: "HH:mm" }} />
+            <DatePicker showTime={{ format: "HH:mm" }} onChange={handleExpiresAtSelect}/>
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 10 }}>

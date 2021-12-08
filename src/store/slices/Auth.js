@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from './axios/index'
 import {message} from 'antd';
+import { setUser } from "./User";
 
 export const AuthSlice = createSlice({
   name: "auth",
@@ -22,7 +23,7 @@ export const authenticate = (credentials) => (dispatch, getState) => {
       api.post(`v1/authenticate/`, credentials)
       .then((response) => {
           dispatch(setToken(response.data.token));
-          window.location.reload();
+          dispatch(setUser(response.data.user));
           resolve(response);
       })
       .catch((error) => {

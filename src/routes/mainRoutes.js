@@ -1,14 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 import UserProfile from '../components/UserProfile/UserProfile'
 import PollList from '../components/PollList/PollList'
-import user from '../mockUserData'
 import PollListMine from '../components/PollListMine/PollListMine'
 import PollListParticipating from '../components/PollListParticipating/PollListParticipating'
 import NewPollForm from '../components/NewPollForm/NewPollForm'
 import { useDispatch } from 'react-redux'
 import { fetchPollList } from '../store/slices/Poll'
 
-function MainRoutes() {
+function MainRoutes({user}) {
     const dispatch = useDispatch()
     dispatch(fetchPollList)
 

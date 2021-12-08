@@ -1,10 +1,9 @@
 import { Input, Form, Button, Row, Col } from 'antd'
-import { useNavigate } from 'react-router-dom'
 import { authenticate } from '../../store/slices/Auth'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+
 function LoginForm() {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
