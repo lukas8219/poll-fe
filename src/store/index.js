@@ -8,6 +8,6 @@ export default configureStore({
     reducer: {
         poll,
         auth,
-        user
+        user,
     }
 })

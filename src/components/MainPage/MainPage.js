@@ -1,7 +1,6 @@
 import { Row, Col } from 'antd';
 import SideMenu from '../SideMenu/SideMenu';
 import MainRoutes from '../../routes/mainRoutes';
-const ws = require('../WebSocket/WebSocket');
 
 const MainPage = () => {
 
