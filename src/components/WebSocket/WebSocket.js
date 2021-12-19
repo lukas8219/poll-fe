@@ -1,5 +1,6 @@
 import { Stomp } from '@stomp/stompjs'
-import { message } from 'antd';
+import { notification } from 'antd';
+import ResultTag from '../ResultTag/ResultTag';
 
 var isConnected = false
 var establishingConnection = false;
@@ -21,10 +22,15 @@ const connect = () => {
             establishingConnection = false;
             isConnected = true;
             client.subscribe(`/user/${user.id}/queue/`, (data) => {
-                message.info(data.body);
+                const response = JSON.parse(data.body);
+                console.log(response.result);
+                notification.open({
+                    message: "Chegou um resultado de Votação!",
+                    description: (<><ResultTag result={response.result}/></>)
+                })
+                console.log(response)
             })
         })
-        client.onStompError((err) => console.log(err));
     }
 }
 

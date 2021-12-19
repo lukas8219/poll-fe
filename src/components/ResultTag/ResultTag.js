@@ -7,7 +7,7 @@ const ResultTag = ({ result }) => {
         <Tag color="green" key={result}>
             Votação Aprovada
         </Tag>
-        : result === "REPROVED" ?
+        : result === "REFUSED" ?
         <Tag color="red" key={result}>
             Votação Reprovada
         </Tag>
