@@ -4,28 +4,27 @@ import { message } from 'antd';
 var isConnected = false
 var establishingConnection = false;
 
-const connect = ({email, password}) => {
+const connect = () => {
     const client = Stomp.over(() => new WebSocket('ws://localhost:8080/chat'))
 
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(isConnected)
+    const token = localStorage.getItem('token');
 
     var headers = {
-        login: email,
-        password: password,
+        login: '',
+        password: token,
     }
 
-    if (user && !isConnected && !establishingConnection) {
+    if (token && !isConnected && !establishingConnection) {
         establishingConnection = true;
-        console.log(user);
         client.connect(headers, (connection) => {
             establishingConnection = false;
-            console.log(connection)
             isConnected = true;
-            client.subscribe('/user/1/queue/', (data) => {
+            client.subscribe(`/user/${user.id}/queue/`, (data) => {
                 message.info(data.body);
             })
         })
+        client.onStompError((err) => console.log(err));
     }
 }
 

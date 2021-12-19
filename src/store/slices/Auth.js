@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import api from './axios/index'
 import { message } from 'antd'
 import { setUser } from './User'
-import wsService from '../../components/WebSocket/WebSocket'
 
 export const AuthSlice = createSlice({
     name: 'auth',
@@ -25,7 +24,6 @@ export const authenticate = (credentials) => (dispatch, getState) => {
             .then((response) => {
                 dispatch(setToken(response.data.token))
                 dispatch(setUser(response.data.user))
-                wsService.connect(credentials);
                 resolve(response)
             })
             .catch((error) => {

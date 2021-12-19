@@ -1,11 +1,15 @@
 import { Row, Col } from 'antd';
 import SideMenu from '../SideMenu/SideMenu';
 import MainRoutes from '../../routes/mainRoutes';
+import wsService from '../WebSocket/WebSocket';
+
 
 const MainPage = () => {
 
     var user = JSON.parse(localStorage.getItem("user"));
-
+    
+    wsService.connect();
+    
     return <>
         <Row type="grid">
             <Col span={5}>
