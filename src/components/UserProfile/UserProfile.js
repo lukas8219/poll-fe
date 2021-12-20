@@ -1,7 +1,7 @@
 import { Form, Input, Avatar, Upload, Button, Row } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import { editUser } from '../../store/slices/User'
-import { useDispatch} from 'react-redux'
+import { editUser, setUserPhoto } from '../../store/slices/User'
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 const UserProfile = (user) => {
@@ -10,6 +10,16 @@ const UserProfile = (user) => {
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
     const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber)
+    const [pic, setPic] = useState(user.pic)
+
+    const token = localStorage.getItem('token')
+
+    const handleUploadChange = ({ file }) => {
+        if (file.status === 'done') {
+            dispatch(setUserPhoto(file.response))
+            setPic(file.response.pic)
+        }
+    }
 
     const submit = () => {
         const data = {
@@ -17,7 +27,7 @@ const UserProfile = (user) => {
             email: email,
             phoneNumber: phoneNumber,
         }
-        console.log(data);
+        console.log(data)
         dispatch(editUser(data))
     }
 
@@ -31,10 +41,17 @@ const UserProfile = (user) => {
             >
                 <Form.Item name="pic" align="center" style={{ padding: 5 }}>
                     <Row align="center" style={{ padding: 15 }}>
-                        <Avatar size={150} src={user.pic} />
+                        <Avatar size={150} src={pic} key={pic} />
                     </Row>
                     <Row align="center">
-                        <Upload showUploadList={false} maxCount={1}>
+                        <Upload
+                            showUploadList={false}
+                            maxCount={1}
+                            name="file"
+                            action="http://localhost:8080/v1/user/photo"
+                            headers={{ authorization: token }}
+                            onChange={handleUploadChange}
+                        >
                             <Button icon={<UploadOutlined />}>
                                 Editar foto
                             </Button>
@@ -43,7 +60,10 @@ const UserProfile = (user) => {
                 </Form.Item>
 
                 <Form.Item label="Nome" name="name" style={{ padding: 15 }}>
-                    <Input onChange={(e) => setName(e.target?.value)} defaultValue={name} />
+                    <Input
+                        onChange={(e) => setName(e.target?.value)}
+                        defaultValue={name}
+                    />
                 </Form.Item>
 
                 <Form.Item label="Email" name="email" style={{ padding: 15 }}>

@@ -7,12 +7,20 @@ export const UserSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             state.user = {...action.payload}
-            localStorage.setItem('user', JSON.stringify(action.payload))
+            saveUserToStorage(action.payload);
         },
+        setUserPhoto: (state, action) => {
+            state.user.pic = action.payload.pic;
+            saveUserToStorage(state.user);
+        }
     },
 })
 
-export const { setUser } = UserSlice.actions
+function saveUserToStorage(user){
+    localStorage.setItem('user', JSON.stringify(user))
+}
+
+export const { setUser, setUserPhoto } = UserSlice.actions
 
 export const editUser =
     ({ email, name, phoneNumber }) =>
