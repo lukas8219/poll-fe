@@ -24,7 +24,6 @@ const connect = () => {
             isConnected = true
             client.subscribe(`/user/${user.id}/queue/`, (data) => {
                 const response = JSON.parse(data.body)
-                console.log(response.result)
                 notification.open({
                     message: 'Chegou um resultado de Votação!',
                     description: (
