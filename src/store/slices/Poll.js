@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from './axios/index'
 import { message } from "antd";
+import { setLoading } from "./Loading";
 
 export const PollSlice = createSlice({
   name: "poll",
@@ -36,6 +37,7 @@ export const voteAgainst = (id) => (dispatch, getState) => {
 }
 
 const vote = ({id, decision, dispatch}) => {
+  dispatch(setLoading(true));
   return new Promise((resolve, reject) => {
     api.put(`v1/poll/${id}/${decision}`)
     .then((response) => {
@@ -48,10 +50,12 @@ const vote = ({id, decision, dispatch}) => {
       message.error(response.data.error);
       reject(error);
     })
+    .finally(() => dispatch(setLoading(false)));
   })
 }
 
 export const fetchPollById = (id) => (dispatch, getState) => {
+  dispatch(setLoading(true));
   return new Promise((resolve, reject) => {
     api.get(`v1/poll/${id}`)
     .then((response) => {
@@ -61,10 +65,12 @@ export const fetchPollById = (id) => (dispatch, getState) => {
     .catch((error) => {
         reject(error);
     })
+    .finally(() => dispatch(setLoading(false)))
   });
 }
 
 export const fetchPollList = (dispatch, getState) => {
+  dispatch(setLoading(true));
     return new Promise((resolve, reject) => {
       api.get("v1/poll/")
       .then((response) => {
@@ -74,10 +80,12 @@ export const fetchPollList = (dispatch, getState) => {
       .catch((error) => {
           reject(error);
       })
+      .finally(() => dispatch(setLoading(false)))
     });
 }
 
 export const createPoll = (data) => (dispatch, getState) => {
+  dispatch(setLoading(true));
     return new Promise((resolve, reject) => {
         api.post("v1/poll", data)
         .then((response) => {
@@ -87,6 +95,7 @@ export const createPoll = (data) => (dispatch, getState) => {
         .catch((error) => {
             reject(error);
         })
+        .finally(() => dispatch(setLoading(false)))
       });
 }
 
