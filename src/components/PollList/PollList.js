@@ -27,7 +27,7 @@ const PollList = () => {
             key: 'action',
             align: 'center',
             render: (text, record, index) => (
-                <VoteButton record={record?.voted} />
+                <VoteButton {...record} />
             ),
         },
     ]

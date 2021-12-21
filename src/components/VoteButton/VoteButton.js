@@ -1,51 +1,70 @@
-import {
-  DislikeOutlined,
-  LikeOutlined,
-} from "@ant-design/icons";
-import { Space, Button } from "antd";
+import { DislikeOutlined, LikeOutlined } from '@ant-design/icons'
+import { Space, Button } from 'antd'
+import { useDispatch } from 'react-redux';
+import {voteFavor, voteAgainst} from '../../store/slices/Poll';
 
-function VoteButton({ record }) {
-  const YES_BUTTON_STYLE = { backgroundColor: "green", borderColor: "green" };
-  const NO_BUTTON_STYLE = { backgroundColor: "red", borderColor: "red" };
+function VoteButton({id, vote}) {
+    const YES_BUTTON_STYLE = { backgroundColor: 'green', borderColor: 'green' }
+    const NO_BUTTON_STYLE = { backgroundColor: 'red', borderColor: 'red' }
 
-  const YES_VOTE = (
-    <>
-      <Button type="primary" style={YES_BUTTON_STYLE} disabled={record}>
-        <LikeOutlined />
-      </Button>
-    </>
-  );
+    const dispatch = useDispatch();
 
-  const NO_VOTE = (
-    <>
-      <Button type="primary" style={NO_BUTTON_STYLE} disabled={record}>
-        <DislikeOutlined />
-      </Button>
-    </>
-  );
+    const BUTTON = ({ style, icon, action }) => {
+        return (
+            <>
+                <Button
+                    type="primary"
+                    style={style}
+                    disabled={vote}
+                    onClick={action}
+                >
+                    {icon}
+                </Button>
+            </>
+        )
+    }
 
-  const FULL_OPTIONS = (
-    <>
-      <Space size="middle">
-        {YES_VOTE}
-        {NO_VOTE}
-      </Space>
-    </>
-  );
+    const handleFavor = () => {
+      dispatch(voteAgainst(id))
+    };
+    const handleAgainst = (e) => {
+      dispatch(voteFavor(id))
+    };
 
-  const renderCorrectButton = (record) => {
-    return record === "YES" ? <>{YES_VOTE}</> : <>{NO_VOTE}</>;
-  };
+    const YES_VOTE = BUTTON({
+      style: YES_BUTTON_STYLE,
+      action: handleFavor,
+      icon: (<LikeOutlined />)
+    });
 
-  return (
-    <>
-      {typeof record === "string" ? (
-        renderCorrectButton(record)
-      ) : (
-        <>{FULL_OPTIONS}</>
-      )}
-    </>
-  );
+    const NO_VOTE = BUTTON({
+      style: NO_BUTTON_STYLE,
+      action: handleAgainst,
+      icon: (<DislikeOutlined />)
+    });
+
+    const FULL_OPTIONS = (
+        <>
+            <Space size="middle">
+                {YES_VOTE}
+                {NO_VOTE}
+            </Space>
+        </>
+    )
+
+    const renderCorrectButton = (vote) => {
+        return vote === 'FAVOR' ? <>{YES_VOTE}</> : <>{NO_VOTE}</>
+    }
+
+    return (
+        <>
+            {typeof vote === 'string' ? (
+                renderCorrectButton(vote)
+            ) : (
+                <>{FULL_OPTIONS}</>
+            )}
+        </>
+    )
 }
 
-export default VoteButton;
+export default VoteButton

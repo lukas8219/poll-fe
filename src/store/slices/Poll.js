@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from './axios/index'
+import { message } from "antd";
 
 export const PollSlice = createSlice({
   name: "poll",
@@ -18,9 +19,41 @@ export const PollSlice = createSlice({
 
 export const { setPollItem, setPollList } = PollSlice.actions;
 
+export const voteFavor = (id) => (dispatch, getState) => {
+  vote({
+    id: id,
+    decision: "approve",
+    dispatch: dispatch
+  });
+}
+
+export const voteAgainst = (id) => (dispatch, getState) => {
+  vote({
+    id: id,
+    decision: "refuse",
+    dispatch: dispatch
+  });
+}
+
+const vote = ({id, decision, dispatch}) => {
+  return new Promise((resolve, reject) => {
+    api.put(`v1/poll/${id}/${decision}`)
+    .then((response) => {
+      dispatch(fetchPollList);
+      message.success("Votado com sucesso!");
+      resolve(response);
+    })
+    .catch((error) => {
+      const response = error.response
+      message.error(response.data.error);
+      reject(error);
+    })
+  })
+}
+
 export const fetchPollById = (id) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
-    api.get(`poll/${id}`)
+    api.get(`v1/poll/${id}`)
     .then((response) => {
         dispatch(setPollItem(response.data));
         resolve(response);
