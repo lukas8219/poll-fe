@@ -10,7 +10,7 @@ export default function PollView() {
 
     useEffect(() => {
         dispatch(fetchPollById(pollId));
-    }, [pollId])
+    }, [pollId, dispatch])
 
 
     const {
