@@ -89,6 +89,7 @@ export const createPoll = (data) => (dispatch, getState) => {
     return new Promise((resolve, reject) => {
         api.post('v1/poll', data)
             .then((response) => {
+                message.success("Votação criada com sucesso!");
                 dispatch(fetchPollList)
                 resolve(response)
             })
