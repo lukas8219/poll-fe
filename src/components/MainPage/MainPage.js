@@ -31,12 +31,11 @@ const MainPage = () => {
 
     return (
         <>
-            {/* <Setup /> */}
             <Row type="grid">
                 <Col span={5}>
                     <SideMenu name={user?.name} pic={user?.pic} />
                 </Col>
-                <Col span={19}>
+                <Col span={19} >
                     <MainRoutes user={user} />
                 </Col>
             </Row>
