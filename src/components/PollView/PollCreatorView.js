@@ -1,17 +1,14 @@
-import { Col, Row } from 'antd'
+import { Col, Row, Space } from 'antd'
+import Avatar from 'antd/lib/avatar/avatar'
 
 export default function PollCreatorView({ id, photo, name, email }) {
     return (
-        <Row>
-            <Col>{photo}</Col>
-            <Col>
-            <Row>
-                {name}
-            </Row>
-            <Row>
-                {email}
-            </Row>
+        <>
+            <Col span={8}><Avatar src={photo} size="large"/></Col>
+            <Col span={16}>
+                <Row >{name}</Row>
+                <Row>{email}</Row>
             </Col>
-        </Row>
+        </>
     )
 }

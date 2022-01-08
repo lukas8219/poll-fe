@@ -1,4 +1,4 @@
-import { Row } from 'antd'
+import { Col, Row, Input } from 'antd'
 
 export default function PollSimpleView({
     id,
@@ -6,11 +6,24 @@ export default function PollSimpleView({
     description,
     expiresAt,
     reportedAt,
+    createdAt,
+    style,
 }) {
+    const { TextArea } = Input
+
     return (
         <>
-            <Row>{subject}</Row>
-            <Row>{description}</Row>
+            <Col style={style}>
+                <Row>{subject}</Row>
+                <Row>
+                    <p style={{
+                        overflow: 'auto',
+                        height: '200px'
+                    }}>{description}</p>
+                </Row>
+                <Row><p>Criado em   : </p>{createdAt}</Row>
+                <Row><p>Terminado em: </p>{expiresAt}</Row>
+            </Col>
         </>
     )
 }
