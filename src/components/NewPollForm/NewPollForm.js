@@ -34,7 +34,7 @@ function NewPollForm() {
             description: description,
             expiresAt: expiresAt,
         }
-        dispatch(createPoll(data)).then(clearFields)
+        dispatch(createPoll(data))
     }
 
     const handleExpiresAtSelect = (e) => {
@@ -53,7 +53,10 @@ function NewPollForm() {
             >
                 <Col style={{ margin: 50 }}>
                     <Form.Item label="Assunto">
-                        <Input onChange={handleSubjectChange} defaultValue={subject}/>
+                        <Input
+                            onChange={handleSubjectChange}
+                            defaultValue={subject}
+                        />
                     </Form.Item>
 
                     <Form.Item label="Descrição">

@@ -1,4 +1,4 @@
-import './App.css'
+import 'antd/dist/antd.css';
 import InitialRoutes from '../routes/initialRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Loader from './Loader'
