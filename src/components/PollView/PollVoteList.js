@@ -2,6 +2,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { List, Avatar, Row, Col, Select, Button, Space } from 'antd'
 import { useState } from 'react'
 import './poll_vote_list-style.css';
+import PollVoteDecision from '../PollVoteDecision/PollVoteDecision';
 
 export default function PollVoteList({ usersVotes }) {
     const [voteFilter, setVoteFilter] = useState('ALL')
@@ -60,7 +61,7 @@ export default function PollVoteList({ usersVotes }) {
                                         <Avatar src={user.photo} size='small' />
                                         <p>{user.name}</p>
                                         <p>{user.email}</p>
-                                        <p>{user.vote}</p>
+                                        <PollVoteDecision {...user}  />
                                 </List.Item>
                             )}
                         ></List>

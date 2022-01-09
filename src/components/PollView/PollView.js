@@ -18,6 +18,9 @@ export default function PollView() {
 
     const pollResult = useSelector((state) => state.poll.poll_item)
 
+
+    console.log(pollResult);
+    
     return (
         <>
             <Row justify="space-around">
