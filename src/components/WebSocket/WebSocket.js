@@ -1,6 +1,7 @@
 import { Stomp } from '@stomp/stompjs'
 import { notification } from 'antd'
 import ResultTag from '../ResultTag/ResultTag'
+import PollButton from './PollButton'
 
 var isConnected = false
 var establishingConnection = false
@@ -13,7 +14,7 @@ const connect = () => {
             () => new WebSocket('ws://localhost:8080/chat')
         )
         const user = JSON.parse(localStorage.getItem('user'))
-        
+
         var headers = {
             password: token,
         }
@@ -28,7 +29,7 @@ const connect = () => {
                     message: 'Chegou um resultado de Votação!',
                     description: (
                         <>
-                            <ResultTag result={response.result} />
+                            <PollButton {...response} />
                         </>
                     ),
                 })

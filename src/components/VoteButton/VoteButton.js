@@ -25,10 +25,10 @@ function VoteButton({id, vote}) {
     }
 
     const handleFavor = () => {
-      dispatch(voteAgainst(id))
+      dispatch(voteFavor(id))
     };
     const handleAgainst = (e) => {
-      dispatch(voteFavor(id))
+      dispatch(voteAgainst(id))
     };
 
     const YES_VOTE = BUTTON({

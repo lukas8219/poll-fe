@@ -1,0 +1,20 @@
+.poll-description {
+    overflow: auto;
+    height: 200px;
+    max-width: 75ch;
+    overflow-wrap: break-word;
+}
+
+.view {
+    padding: 5%;
+    padding-bottom: 0%;
+}
+
+.view-info > .ant-row {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.view-info > .ant-row > .ant-tag {
+    height: fit-content;
+}

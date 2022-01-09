@@ -4,6 +4,7 @@ import PollList from '../components/PollList/PollList'
 import PollListMine from '../components/PollListMine/PollListMine'
 import PollListParticipating from '../components/PollListParticipating/PollListParticipating'
 import NewPollForm from '../components/NewPollForm/NewPollForm'
+import PollView from '../components/PollView/PollView'
 
 function MainRoutes({user}) {
     
@@ -18,6 +19,7 @@ function MainRoutes({user}) {
                     element={<PollListParticipating />}
                 />
                 <Route path="/poll/mine" element={<PollListMine />} />
+                <Route path="/poll/:pollId" element={<PollView />} />
             </Routes>
         </>
     )
