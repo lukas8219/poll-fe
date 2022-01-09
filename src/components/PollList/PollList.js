@@ -44,7 +44,7 @@ const PollList = () => {
             pagination={{ pageSize: 6 }}
             onRow={(record, index) => {
                 return {
-                    onClick: () => {
+                    onDoubleClick: () => {
                         navigate(`poll/${record.id}`)
                     }
                 };

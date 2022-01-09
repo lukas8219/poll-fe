@@ -1,0 +1,23 @@
+.ant-row-space-around {
+    margin: 50px;
+}
+
+.creatorCol {
+    padding: 2%;
+    background-color: #B3B4B5;
+    justify-content: space-evenly;
+    height: fit-content;
+}
+
+.creatorCol > .ant-space > .ant-space-item >  .ant-row {
+    background-color: #88898B;
+}
+
+.votesCol {
+    padding: 5%;
+    background-color: #B3B4B5;
+}
+
+.creatorCol > .ant-space {
+    width: 100%;
+}

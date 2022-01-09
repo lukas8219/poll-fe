@@ -1,0 +1,11 @@
+.poll-description {
+    overflow: auto;
+    height: 200px;
+    max-width: 75ch;
+    overflow-wrap: break-word;
+}
+
+.view {
+    padding: 5%;
+    padding-bottom: 0%;
+}

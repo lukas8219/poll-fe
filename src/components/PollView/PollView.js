@@ -6,6 +6,7 @@ import PollCreatorView from './PollCreatorView'
 import { Row, Col, Space } from 'antd'
 import PollSimpleView from './PollSimpleView'
 import PollVoteList from './PollVoteList'
+import './poll_view-style.css'
 
 export default function PollView() {
     const { pollId } = useParams()
@@ -19,21 +20,21 @@ export default function PollView() {
 
     return (
         <>
-            <Row justify="space-around" style={{ margin: 50, height: '80%' }}>
-                <Col span={10} style={{ padding: '2%', backgroundColor: '#B3B4B5', justifyContent:'space-evenly' }}>
-                    <Space direction='vertical' size="large" style={{width: '100%'}}>
-                    <Row style={{backgroundColor: '#88898B', padding: '2%'}}>
-                        <PollCreatorView {...pollResult.creator} />
-                    </Row>
-                    <Row style={{backgroundColor: '#88898B'}}>
-                        <PollSimpleView {...pollResult}/>
-                    </Row>
+            <Row justify="space-around">
+                <Col span={10} className="creatorCol">
+                    <Space
+                        direction="vertical"
+                        size="large"
+                    >
+                        <Row>
+                            <PollCreatorView {...pollResult.creator} />
+                        </Row>
+                        <Row>
+                            <PollSimpleView {...pollResult} />
+                        </Row>
                     </Space>
                 </Col>
-                <Col
-                    span={12}
-                    style={{ padding: '5%', backgroundColor: '#B3B4B5' }}
-                >
+                <Col span={12} className="votesCol">
                     <PollVoteList {...pollResult} />
                 </Col>
             </Row>

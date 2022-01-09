@@ -1,6 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { List, Avatar, Row, Col, Select, Button, Space } from 'antd'
 import { useState } from 'react'
+import './poll_vote_list-style.css';
 
 export default function PollVoteList({ usersVotes }) {
     const [voteFilter, setVoteFilter] = useState('ALL')
@@ -44,7 +45,7 @@ export default function PollVoteList({ usersVotes }) {
             <Row justify="center">
                 <Button type="primary">Filtro avançado</Button>
             </Row>
-            <Row style={{ marginTop: '5%' }}>
+            <Row className="vote-list-row">
                 <Col span={24}>
                     <InfiniteScroll
                         dataLength={usersVotes ? usersVotes.length : 0}
@@ -55,18 +56,11 @@ export default function PollVoteList({ usersVotes }) {
                             renderItem={(user) => (
                                 <List.Item
                                     key={user.id}
-                                    style={{
-                                        backgroundColor: '#88898B',
-                                        justifyContent: 'space-around' ,
-                                        padding: '0%',
-                                        alignItems: 'center',
-                                        fontSize: '12px',
-                                    }}
                                 >
                                         <Avatar src={user.photo} size='small' />
                                         <p>{user.name}</p>
                                         <p>{user.email}</p>
-                                        <p style={{}}>{user.vote}</p>
+                                        <p>{user.vote}</p>
                                 </List.Item>
                             )}
                         ></List>
