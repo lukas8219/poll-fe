@@ -1,10 +1,27 @@
 import { Input, Form, Button, Row, Col } from 'antd'
-import { authenticate } from '../../store/slices/Auth'
+import { authenticate, authenticateByToken } from '../../store/slices/Auth'
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 function LoginForm() {
     const dispatch = useDispatch()
+    const [ params ] = useSearchParams();
+    const [authenticationTry, setAuthenticationTried] = useState(false);
+
+    const token = params.get("token");
+
+    console.log(token);
+
+    useEffect(() => {
+        if(token && !authenticationTry){
+            dispatch(authenticateByToken(token))
+            .then(() => {
+                setAuthenticationTried(true);
+                window.location = "/";
+            });
+        }
+    }, [])
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
