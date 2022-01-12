@@ -20,7 +20,7 @@ function LoginPage() {
                     >
                         <span>Seja Bem vindo</span>
                     </Header>
-                    <Content>
+                    <Content style={{textAlign: 'center', alignContent: 'center'}}>
                         <LoginForm />
                     </Content>
                     <Footer

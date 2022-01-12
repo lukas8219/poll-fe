@@ -6,20 +6,19 @@ import { useSearchParams } from 'react-router-dom'
 
 function LoginForm() {
     const dispatch = useDispatch()
-    const [ params ] = useSearchParams();
-    const [authenticationTry, setAuthenticationTried] = useState(false);
+    const [params] = useSearchParams()
+    const [authenticationTry, setAuthenticationTried] = useState(false)
 
-    const token = params.get("token");
+    const token = params.get('token')
 
-    console.log(token);
+    console.log(token)
 
     useEffect(() => {
-        if(token && !authenticationTry){
-            dispatch(authenticateByToken(token))
-            .then(() => {
-                setAuthenticationTried(true);
-                window.location = "/";
-            });
+        if (token && !authenticationTry) {
+            dispatch(authenticateByToken(token)).then(() => {
+                setAuthenticationTried(true)
+                window.location = '/'
+            })
         }
     }, [])
 
@@ -32,26 +31,34 @@ function LoginForm() {
 
     return (
         <>
-            <Col>
-                <Row type="flex" align="center" style={{ height: 200 }}>
+            <Col span={24}>
+                <Row
+                    type="flex"
+                    align="middle"
+                    style={{ height: 'fit-content', flexDirection: 'column' }}
+                >
                     <Form
                         style={{ margin: 50 }}
-                        labelCol={{ span: 6 }}
-                        wrapperCol={{ span: 16 }}
+                        wrapperCol={{ span: 24 }}
                         onFinish={onFinish}
                     >
-                        <Form.Item label="Login" name="login">
-                            <Input onChange={(e) => setEmail(e.target.value)} />
+                        <Form.Item name="login">
+                            <Input
+                                type="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Insira seu email"
+                            />
                         </Form.Item>
 
-                        <Form.Item label="Senha" name="password">
+                        <Form.Item name="password">
                             <Input
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Insira sua senha"
                             ></Input>
                         </Form.Item>
 
-                        <Form.Item wrapperCol={{ offset: 8 }}>
+                        <Form.Item wrapperCol={{ offset: 0 }}>
                             <Button type="primary" htmlType="submit">
                                 Entrar
                             </Button>
