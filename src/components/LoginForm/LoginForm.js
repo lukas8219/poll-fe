@@ -3,6 +3,8 @@ import { authenticate, authenticateByToken } from '../../store/slices/Auth'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import styles from '../../app.css'
+import { GoogleOutlined } from '@ant-design/icons'
 
 function LoginForm() {
     const dispatch = useDispatch()
@@ -22,6 +24,12 @@ function LoginForm() {
         }
     }, [])
 
+    const border = {
+        border: 'solid',
+        borderColor: 'transparent',
+        borderRadius: '50px',
+    }
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -31,14 +39,25 @@ function LoginForm() {
 
     return (
         <>
-            <Col span={24}>
+            <Col
+                span={24}
+                className='login-input border'
+            >
                 <Row
                     type="flex"
                     align="middle"
-                    style={{ height: 'fit-content', flexDirection: 'column' }}
+                    style={{
+                        height: 'fit-content',
+                        width: 'fit-content',
+                        flexDirection: 'column',
+                        textAlign: 'center',
+                    }}
                 >
+                    <p style={{ fontSize: 20}}>
+                        <b> Login </b>
+                    </p>
                     <Form
-                        style={{ margin: 50 }}
+                        style={{ marginLeft: 50, marginRight: 50 }}
                         wrapperCol={{ span: 24 }}
                         onFinish={onFinish}
                     >
@@ -47,6 +66,7 @@ function LoginForm() {
                                 type="email"
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Insira seu email"
+                                className='login-input border'
                             />
                         </Form.Item>
 
@@ -55,15 +75,23 @@ function LoginForm() {
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Insira sua senha"
-                            ></Input>
+                                className='login-input border'
+                            />
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ offset: 0 }}>
-                            <Button type="primary" htmlType="submit">
+                            <Button type="primary" htmlType="submit" shape='round'
+                            style={{width: '100%', backgroundColor: 'var(--color-one)'}}>
                                 Entrar
                             </Button>
                         </Form.Item>
                     </Form>
+                    <Row type="flex" justify='middle' style={{marginBottom: 10}}>
+                        <Button type='primary' shape='circle'
+                        onClick={() => window.location = 'http://localhost:8080/oauth2/authorization/google'}>
+                            <GoogleOutlined />
+                        </Button>
+                    </Row>
                 </Row>
             </Col>
         </>

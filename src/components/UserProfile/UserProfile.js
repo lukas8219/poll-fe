@@ -1,4 +1,4 @@
-import { Form, Input, Avatar, Upload, Button, Row } from 'antd'
+import { Form, Input, Avatar, Upload, Button, Row, Col } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import { editUser, setUserPhoto } from '../../store/slices/User'
 import { useDispatch } from 'react-redux'
@@ -33,6 +33,7 @@ const UserProfile = (user) => {
 
     return (
         <>
+        <Col span={24} style={{margin: 30}}>
             <Form
                 name="basic"
                 labelCol={{ span: 8 }}
@@ -92,6 +93,7 @@ const UserProfile = (user) => {
                     </Row>
                 </Form.Item>
             </Form>
+        </Col>
         </>
     )
 }

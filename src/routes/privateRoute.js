@@ -1,5 +1,5 @@
-import LoginPage from '../components/LoginPage/LoginPage'
 import { useSelector } from 'react-redux'
+import LoginForm from '../components/LoginForm/LoginForm'
 
 function PrivateRoute({ component: Component, ...rest }) {
     const token = useSelector((state) => state.auth?.token) || localStorage.getItem("token");
@@ -8,7 +8,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     if (token && user) {
         return <Component />
     } else {
-        return <LoginPage />
+        return <LoginForm />
     }
 }
 

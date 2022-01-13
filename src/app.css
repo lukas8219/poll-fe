@@ -1,3 +1,27 @@
 :root {
-    --color-one: purple;
+    --color-one: green;
+    --color-two: rgb(0, 128,0, 0.1);
+    --color-three: white;
+    --4th-color: rgb(0,128,0, 0.5);
+}
+
+body {
+    background-color: var(--color-one);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-input {
+    background-color: var(--color-three);
+}
+
+.border {
+    border: solid;
+    border-color: transparent;
+    border-radius: 50px;
+}
+
+.login-input::placeholder {
+    color: var(--4th-color);
 }

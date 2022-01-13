@@ -48,7 +48,7 @@ function NewPollForm() {
                 name="new-poll"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 12 }}
-                style={{ margin: 100, borderStyle: 'solid' }}
+                style={{ margin: 30, borderStyle: 'solid' }}
                 onFinish={sendRequest}
             >
                 <Col style={{ margin: 50 }}>
