@@ -22,23 +22,30 @@ const MainPage = () => {
         loading = true
     }
 
-    if(!loading){
-        dispatch(fetchPollList);
-        loading = true;
+    if (!loading) {
+        dispatch(fetchPollList)
+        loading = true
     }
 
     wsService.connect()
 
     return (
         <>
-            <Row type="grid">
-                <Col span={5}>
-                    <SideMenu name={user?.name} pic={user?.pic} />
-                </Col>
-                <Col span={19} >
-                    <MainRoutes user={user} />
-                </Col>
-            </Row>
+            <Col
+                style={{
+                    width: 800,
+                    height: 550,
+                }}
+                className='border login-form' >   
+                <Row type="grid">
+                    <Col span={5}>
+                        <SideMenu name={user?.name} pic={user?.pic} />
+                    </Col>
+                    <Col span={19}>
+                        <MainRoutes user={user} />
+                    </Col>
+                </Row>
+            </Col>
         </>
     )
 }

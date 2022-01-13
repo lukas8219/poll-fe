@@ -19,6 +19,25 @@ export const AuthSlice = createSlice({
 
 export const { setToken } = AuthSlice.actions
 
+export const authenticateByToken = (token) => (dispatch, getState) => {
+    dispatch(setLoading(true))
+    return new Promise((resolve, reject) => {
+        api.get(`v1/authenticate/?token=${token}`)
+            .then((response) => {
+                dispatch(setToken(response.data.token))
+                dispatch(setUser(response.data.user))
+                resolve(response)
+            })
+            .catch((error) => {
+                message.error(error?.response?.data?.error)
+                reject(error)
+            })
+            .finally(() => {
+                dispatch(setLoading(false));
+            })
+    })
+}
+
 export const authenticate = (credentials) => (dispatch, getState) => {
     dispatch(setLoading(true));
     return new Promise((resolve, reject) => {

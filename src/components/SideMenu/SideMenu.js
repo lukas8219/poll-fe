@@ -20,13 +20,11 @@ const SideMenu = ({ name, pic }) => {
                             <span> Início</span>
                         </Link>
                     </Menu.Item>
-                    <SubMenu title="Votações">
-                        <Menu.Item>
-                            <Link to="/poll/new">
-                                <span> Nova votação</span>
-                            </Link>
-                        </Menu.Item>
-                    </SubMenu>
+                    <Menu.Item>
+                        <Link to="/poll/new">
+                            <span> Nova votação</span>
+                        </Link>
+                    </Menu.Item>
                     <Menu.Item>
                         <Link to="/profile">
                             <span>Editar perfil</span>
