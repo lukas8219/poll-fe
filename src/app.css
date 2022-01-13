@@ -16,6 +16,10 @@ body {
     background-color: var(--color-three);
 }
 
+.login-form {
+    background-color: var(--color-three);
+}
+
 .border {
     border: solid;
     border-color: transparent;
@@ -24,4 +28,12 @@ body {
 
 .login-input::placeholder {
     color: var(--4th-color);
+}
+
+.login-item:focus, .login-item:hover {
+    border-color: var(--color-one);
+}
+
+.login-button:focus, .login-button:hover, .login-button {
+    border-color: var(--color-one);
 }

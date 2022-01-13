@@ -1,4 +1,4 @@
-import { Input, Form, Button, Row, Col } from 'antd'
+import { Input, Form, Button, Row, Col, Divider } from 'antd'
 import { authenticate, authenticateByToken } from '../../store/slices/Auth'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -39,10 +39,7 @@ function LoginForm() {
 
     return (
         <>
-            <Col
-                span={24}
-                className='login-input border'
-            >
+            <Col span={24} className="login-form border">
                 <Row
                     type="flex"
                     align="middle"
@@ -53,9 +50,9 @@ function LoginForm() {
                         textAlign: 'center',
                     }}
                 >
-                    <p style={{ fontSize: 20}}>
-                        <b> Login </b>
-                    </p>
+                    <Divider>
+                        <b>Login</b>
+                    </Divider>
                     <Form
                         style={{ marginLeft: 50, marginRight: 50 }}
                         wrapperCol={{ span: 24 }}
@@ -66,7 +63,7 @@ function LoginForm() {
                                 type="email"
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Insira seu email"
-                                className='login-input border'
+                                className="login-input border login-item"
                             />
                         </Form.Item>
 
@@ -75,23 +72,46 @@ function LoginForm() {
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Insira sua senha"
-                                className='login-input border'
+                                className="login-input border login-item"
                             />
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ offset: 0 }}>
-                            <Button type="primary" htmlType="submit" shape='round'
-                            style={{width: '100%', backgroundColor: 'var(--color-one)'}}>
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                shape="round"
+                                style={{
+                                    width: '100%',
+                                    backgroundColor: 'var(--color-one)',
+                                }}
+                                className="login-button"
+                            >
                                 Entrar
                             </Button>
                         </Form.Item>
+                        <Form.Item wrapperCol={{offset:0}}>
+                            <Button
+                                type="primary"
+                                shape="round"
+                                style={{
+                                    display: 'flex',
+                                    textAlign: 'center',
+                                    width: '100%',
+                                    columnGap: 5
+                                }}
+                                onClick={() =>
+                                    (window.location =
+                                        'http://localhost:8080/oauth2/authorization/google')
+                                }
+                            >
+                                <GoogleOutlined
+                                    style={{ alignSelf: 'center' }}
+                                />
+                                <p> Entrar com conta Google </p>
+                            </Button>
+                        </Form.Item>
                     </Form>
-                    <Row type="flex" justify='middle' style={{marginBottom: 10}}>
-                        <Button type='primary' shape='circle'
-                        onClick={() => window.location = 'http://localhost:8080/oauth2/authorization/google'}>
-                            <GoogleOutlined />
-                        </Button>
-                    </Row>
                 </Row>
             </Col>
         </>
