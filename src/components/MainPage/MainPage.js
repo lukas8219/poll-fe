@@ -33,13 +33,10 @@ const MainPage = () => {
         <>
             <Col
                 style={{
-                    width: '100%',
+                    width: 800,
                     height: 550,
-                    backgroundColor: 'rgba(255, 255, 255, .15)',
-                    backdropFilter: 'blur'
                 }}
-                className='border'
-            >   
+                className='border login-form' >   
                 <Row type="grid">
                     <Col span={5}>
                         <SideMenu name={user?.name} pic={user?.pic} />

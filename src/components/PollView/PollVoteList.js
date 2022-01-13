@@ -25,8 +25,7 @@ export default function PollVoteList({ usersVotes }) {
     return (
         <>
             <Row justify="space-between">
-                <p>Listagem de Votantes</p>
-                <p>Quantidade de votos : {votesSize()}</p>
+                <p>Quantidade de votos : </p><p>{votesSize()}</p>
             </Row>
             <Row justify="space-between">
                 <Col>
