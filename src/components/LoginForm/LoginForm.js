@@ -51,7 +51,7 @@ function LoginForm() {
                     }}
                 >
                     <Divider>
-                        <b>Login</b>
+                        <b className='login-text'>Login</b>
                     </Divider>
                     <Form
                         style={{ marginLeft: 50, marginRight: 50 }}
@@ -81,10 +81,6 @@ function LoginForm() {
                                 type="primary"
                                 htmlType="submit"
                                 shape="round"
-                                style={{
-                                    width: '100%',
-                                    backgroundColor: 'var(--color-one)',
-                                }}
                                 className="login-button"
                             >
                                 Entrar
@@ -98,7 +94,7 @@ function LoginForm() {
                                     display: 'flex',
                                     textAlign: 'center',
                                     width: '100%',
-                                    columnGap: 5
+                                    columnGap: 5,
                                 }}
                                 onClick={() =>
                                     (window.location =
