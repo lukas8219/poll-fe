@@ -1,6 +1,6 @@
 import { Avatar, Menu, Row, Col } from 'antd'
+import './sideMenu.css';
 import { Link } from 'react-router-dom'
-import SubMenu from 'antd/lib/menu/SubMenu'
 
 const SideMenu = ({ name, pic }) => {
     return (
@@ -14,7 +14,7 @@ const SideMenu = ({ name, pic }) => {
                 </Col>
             </Row>
             <Row>
-                <Menu defaultSelectedKeys={0} mode="inline">
+                <Menu defaultSelectedKeys={0} mode="inline" className='sideMenu'>
                     <Menu.Item>
                         <Link to="/">
                             <span> Início</span>
