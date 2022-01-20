@@ -14,7 +14,7 @@ const SideMenu = ({ name, pic }) => {
                 </Col>
             </Row>
             <Row>
-                <Menu defaultSelectedKeys={0} mode="inline" className='sideMenu'>
+                <Menu defaultSelectedKeys={0} mode='horizontal' className='sideMenu' style={{width: '100%'}}>
                     <Menu.Item>
                         <Link to="/">
                             <span> Início</span>

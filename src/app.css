@@ -4,13 +4,15 @@
     --3th-color: #02330B;
     --4th-color: #66B074;
     --5th-color: #133B18;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
     background-color: var(--2th-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 75%; 
+    width: 40%;
 }
 
 .login-input {

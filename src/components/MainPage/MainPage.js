@@ -32,16 +32,15 @@ const MainPage = () => {
     return (
         <>
             <Col
-                style={{
-                    width: 800,
-                    height: 550,
-                }}
                 className='border login-form' >   
-                <Row type="grid">
-                    <Col span={5}>
+                <Row type="flex">
+                    <Col span={24}>
                         <SideMenu name={user?.name} pic={user?.pic} />
                     </Col>
-                    <Col span={19}>
+                    
+                </Row>
+                <Row style={{height: '600px'}}>
+                    <Col span={24}>
                         <MainRoutes user={user} />
                     </Col>
                 </Row>

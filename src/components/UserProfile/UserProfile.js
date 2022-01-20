@@ -3,6 +3,8 @@ import { UploadOutlined } from '@ant-design/icons'
 import { editUser, setUserPhoto } from '../../store/slices/User'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import './userProfile.css'
+import profile from './download.png'
 
 const UserProfile = (user) => {
     const dispatch = useDispatch()
@@ -33,58 +35,37 @@ const UserProfile = (user) => {
 
     return (
         <>
-            <Col span={24} style={{ margin: 30 }}>
-                <Form name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 12}} onFinish={submit}>
-                    <Form.Item name="pic" align="center" style={{ padding: 5 }}>
-                        <Row align="center" style={{ padding: 15 }}>
-                            <Avatar size={150} src={pic} key={pic} />
-                        </Row>
-                        <Row align="center">
-                            <Upload
-                                showUploadList={false}
-                                maxCount={1}
-                                name="file"
-                                action="http://localhost:8080/v1/user/photo"
-                                headers={{ authorization: token }}
-                                onChange={handleUploadChange}
-                            >
-                                <Button icon={<UploadOutlined />}>
-                                    Editar foto
-                                </Button>
-                            </Upload>
-                        </Row>
-                    </Form.Item>
-
-                    <Form.Item label="Nome" name="name">
-                        <Input
-                            onChange={(e) => setName(e.target?.value)}
-                            defaultValue={name}
-                        />
-                    </Form.Item>
-
-                    <Form.Item label="Email" name="email">
-                        <Input
-                            onChange={(e) => setEmail(e.target?.value)}
-                            defaultValue={email}
-                        />
-                    </Form.Item>
-
-                    <Form.Item label="Número de telefone" name="phoneNumber">
-                        <Input
-                            onChange={(e) => setPhoneNumber(e.target?.value)}
-                            defaultValue={phoneNumber}
-                        />
-                    </Form.Item>
-
-                    <Form.Item align="center">
-                        <Row align="center">
-                            <Button type="primary" htmlType="submit">
-                                Salvar
-                            </Button>
-                        </Row>
-                    </Form.Item>
-                </Form>
-            </Col>
+            <div class="main-container">
+                <div class="profile-container">
+                    <img src={profile} class="profile-photo-container" />
+                    <input type="button" value="Editar" />
+                    <span
+                        style={{
+                            alignSelf: 'center',
+                            position: 'relative',
+                            bottom: '3%',
+                        }}
+                    >
+                        About me
+                    </span>
+                    <div class="about-me" value="Sobre mim">
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Pellentesque interdum rutrum sodales. Nullam mattis
+                        fermentum libero, non volutpat.
+                        </p>
+                    </div>
+                </div>
+                <div class="details">
+                    <div class="capa" nome={name} email={email}></div>
+                    <div class="grid-container">
+                        <div class="header">Ultima votação</div>
+                    </div>
+                    <div class="grid-container">
+                        <div class="header">Últimas participações:</div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

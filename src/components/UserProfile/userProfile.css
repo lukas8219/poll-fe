@@ -1,0 +1,99 @@
+.main-container {
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+}
+.details{
+    margin-top: 6%;
+    display: grid;
+    height: 80%;
+    width: 60%;
+    row-gap: 3%;
+    grid-template-rows: 30% 20% 50%;
+}
+
+.profile-container{
+    border: 2px solid black;
+    z-index: 1;
+    align-self: center;
+    width: 30%;
+    height: 75%;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-photo-container {
+    margin: 5%;
+}
+
+.profile-container > input {
+    position: relative;
+    bottom: 10%;
+    width: 50%;
+    height: fit-content;
+    align-self: center;
+    border: 1px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
+}
+
+.profile-container > input:hover{
+    background-color: gray;
+    box-shadow: 2px 2px 2px black;
+}
+
+.profile-container > div {
+    margin: 5%;
+    position: relative;
+    bottom: 5%;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.capa {
+    width: calc(100% + 185px);
+    position: relative;
+    z-index: 0;
+    right: 40%;
+    background-size: 100%;
+    background-image: url('./bg.jpg');
+}
+
+.capa::after {
+    content: attr(nome)'\a'attr(email) ;
+    white-space: pre;
+    position: relative;
+    left: 28%;
+    top: 50%;
+    color: black;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+.grid-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: gray;
+}
+
+.grid-container > .header {
+    background-color: white;
+}
+
+.about-me {
+    height: 100%;
+}
+
+@media (max-width: 400px)
+{
+    body{
+        width: 95%;
+    }
+
+    .capa{
+        width: calc(100% + 91px);
+    }
+
+}
