@@ -37,7 +37,7 @@ const UserProfile = (user) => {
         <>
             <div class="main-container">
                 <div class="profile-container">
-                    <img src={profile} class="profile-photo-container" />
+                    <img src={pic} class="profile-photo-container" />
                     <input type="button" value="Editar" />
                     <span
                         style={{
