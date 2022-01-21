@@ -3,12 +3,10 @@ import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import './userProfile.css'
 import api from '../../store/slices/axios'
-import { List } from 'antd/lib/form/Form'
-import Avatar from 'antd/lib/avatar/avatar'
 import PollVoteDecision from '../PollVoteDecision/PollVoteDecision'
-import UserAvatar from '../userAvatar/UserAvatar'
-import { Tooltip, Col } from 'antd'
+import { Tooltip, Col, Table } from 'antd'
 import ResultTag from '../ResultTag/ResultTag'
+import UserAvatar from '../userAvatar/UserAvatar'
 
 const formateDateToString = (date) => {
     return `${date.toLocaleDateString()} às ${date.toLocaleTimeString()}`
@@ -31,9 +29,18 @@ const UserProfile = (user) => {
     const [pic, setPic] = useState(user.pic)
     const [aboutMe, setAboutMe] = useState(user.aboutMe)
     const [creation, setCreation] = useState({})
-    const [participations, setParticipations] = useState()
+    const [participations, setParticipations] = useState([])
 
     const token = localStorage.getItem('token')
+
+    const columns = [
+        {
+            title: 'Criador',
+            dataIndex: 'creator',
+            key: 'creator',
+            render: (record) => <UserAvatar {...record} />,
+        },
+    ]
 
     const handleUploadChange = ({ file }) => {
         if (file.status === 'done') {
@@ -117,11 +124,13 @@ const UserProfile = (user) => {
                     </div>
                     <div class="grid-container">
                         <div class="header">Últimas participações:</div>
-                        <ul>
-                        {participations && participations.map((p) => {
-                            <li>{p.id}</li>
-                        })} 
-                        </ul>
+                        {participations.length > 0 && (
+                            <Table
+                                columns={columns}
+                                pagination={{ pageSize: 3 }}
+                                dataSource={participations}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
