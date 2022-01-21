@@ -56,7 +56,7 @@ const SideMenu = ({ name, pic }) => {
                         </Menu.Item>
                         <Menu.Item>
                             <Link to="/profile">
-                                <span>Editar perfil</span>
+                                <span>Perfil</span>
                             </Link>
                         </Menu.Item>
                     </Menu>

@@ -7,7 +7,7 @@ import { List } from 'antd/lib/form/Form'
 import Avatar from 'antd/lib/avatar/avatar'
 import PollVoteDecision from '../PollVoteDecision/PollVoteDecision'
 import UserAvatar from '../userAvatar/UserAvatar'
-import { Tooltip } from 'antd'
+import { Tooltip, Col } from 'antd'
 import ResultTag from '../ResultTag/ResultTag'
 
 const formateDateToString = (date) => {
@@ -29,7 +29,9 @@ const UserProfile = (user) => {
     const [email, setEmail] = useState(user.email)
     const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber)
     const [pic, setPic] = useState(user.pic)
-    const [participation, setParticipation] = useState([])
+    const [aboutMe, setAboutMe] = useState(user.aboutMe)
+    const [creation, setCreation] = useState({})
+    const [participations, setParticipations] = useState()
 
     const token = localStorage.getItem('token')
 
@@ -54,16 +56,22 @@ const UserProfile = (user) => {
         api.get(`v1/poll/creation`)
             .then((result) => result.data)
             .then((data) => {
-                setParticipation({
+                setCreation({
                     ...data,
                     fVotedAt: new Date(data.votedAt),
                     voteesQuantity: data.favor + data.against,
                 })
             })
+
+        api.get(`v1/poll/participations`)
+            .then((result) => result.data)
+            .then((data) => setParticipations(data))
     }, [])
 
-    const getVotedAt = participation.fVotedAt &&
-    formateDateToString(participation.fVotedAt);
+    useEffect(() => console.log(participations), participations)
+
+    const getVotedAt =
+        creation.fVotedAt && formateDateToString(creation.fVotedAt)
 
     return (
         <>
@@ -78,20 +86,18 @@ const UserProfile = (user) => {
                             bottom: '3%',
                         }}
                     >
-                        About me
+                        Sobre mim:
                     </span>
                     <div class="about-me" value="Sobre mim">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Pellentesque interdum rutrum sodales. Nullam
-                            mattis fermentum libero, non volutpat.
-                        </p>
+                        <p>{aboutMe}</p>
                     </div>
                 </div>
                 <div class="details">
                     <div class="capa" nome={name} email={email}></div>
                     <div class="grid-container">
-                        <div class="header">Ultima votação criada {getVotedAt}</div>
+                        <div class="header">
+                            Ultima votação criada {getVotedAt}
+                        </div>
                         <div
                             style={{
                                 display: 'flex',
@@ -100,26 +106,22 @@ const UserProfile = (user) => {
                                 height: '80%',
                             }}
                         >
-                            <span>{participation.subject}</span>
-                            <VoteQuantity {...participation} />
-                            {console.log(participation)}
-                            {participation.decision && <PollVoteDecision vote={participation.decision} />}
-                            <ResultTag {...participation} />
+                            <span>{creation.subject}</span>
+                            <VoteQuantity {...creation} />
+                            {console.log(creation)}
+                            {creation.decision && (
+                                <PollVoteDecision vote={creation.decision} />
+                            )}
+                            <ResultTag {...creation} />
                         </div>
                     </div>
                     <div class="grid-container">
                         <div class="header">Últimas participações:</div>
-                        <List
-                            dataSource={participation}
-                            renderItem={(user) => (
-                                <List.Item key={user.id}>
-                                    <Avatar src={user.photo} size="small" />
-                                    <p>{user.creatorName}</p>
-                                    <p>{user.email}</p>
-                                    <PollVoteDecision {...user} />
-                                </List.Item>
-                            )}
-                        ></List>
+                        <ul>
+                        {participations && participations.map((p) => {
+                            <li>{p.id}</li>
+                        })} 
+                        </ul>
                     </div>
                 </div>
             </div>

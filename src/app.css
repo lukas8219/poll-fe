@@ -13,7 +13,6 @@ body {
     background-color: var(--2th-color);
     height: 75%; 
     width: 40%;
-    background-image: url('assets/bg_1.png');
 }
 
 .login-input {
