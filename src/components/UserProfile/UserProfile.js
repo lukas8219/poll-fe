@@ -1,10 +1,26 @@
-import { Form, Input, Avatar, Upload, Button, Row, Col } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
 import { editUser, setUserPhoto } from '../../store/slices/User'
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './userProfile.css'
-import profile from './download.png'
+import api from '../../store/slices/axios'
+import { List } from 'antd/lib/form/Form'
+import Avatar from 'antd/lib/avatar/avatar'
+import PollVoteDecision from '../PollVoteDecision/PollVoteDecision'
+import UserAvatar from '../userAvatar/UserAvatar'
+import { Tooltip } from 'antd'
+import ResultTag from '../ResultTag/ResultTag'
+
+const formateDateToString = (date) => {
+    return `${date.toLocaleDateString()} às ${date.toLocaleTimeString()}`
+}
+
+const VoteQuantity = ({ favor, against, voteesQuantity }) => {
+    return (
+        <Tooltip title={`${favor} Y vs ${against} N`}>
+            <span>{voteesQuantity} votos totais</span>
+        </Tooltip>
+    )
+}
 
 const UserProfile = (user) => {
     const dispatch = useDispatch()
@@ -13,6 +29,7 @@ const UserProfile = (user) => {
     const [email, setEmail] = useState(user.email)
     const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber)
     const [pic, setPic] = useState(user.pic)
+    const [participation, setParticipation] = useState([])
 
     const token = localStorage.getItem('token')
 
@@ -24,14 +41,29 @@ const UserProfile = (user) => {
     }
 
     const submit = () => {
-        const data = {
-            name: name,
-            email: email,
-            phoneNumber: phoneNumber,
-        }
-        console.log(data)
-        dispatch(editUser(data))
+        dispatch(
+            editUser({
+                name: name,
+                email: email,
+                phoneNumber: phoneNumber,
+            })
+        )
     }
+
+    useEffect(() => {
+        api.get(`v1/poll/creation`)
+            .then((result) => result.data)
+            .then((data) => {
+                setParticipation({
+                    ...data,
+                    fVotedAt: new Date(data.votedAt),
+                    voteesQuantity: data.favor + data.against,
+                })
+            })
+    }, [])
+
+    const getVotedAt = participation.fVotedAt &&
+    formateDateToString(participation.fVotedAt);
 
     return (
         <>
@@ -50,19 +82,44 @@ const UserProfile = (user) => {
                     </span>
                     <div class="about-me" value="Sobre mim">
                         <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque interdum rutrum sodales. Nullam mattis
-                        fermentum libero, non volutpat.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Pellentesque interdum rutrum sodales. Nullam
+                            mattis fermentum libero, non volutpat.
                         </p>
                     </div>
                 </div>
                 <div class="details">
                     <div class="capa" nome={name} email={email}></div>
                     <div class="grid-container">
-                        <div class="header">Ultima votação</div>
+                        <div class="header">Ultima votação criada {getVotedAt}</div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-around',
+                                alignItems: 'center',
+                                height: '80%',
+                            }}
+                        >
+                            <span>{participation.subject}</span>
+                            <VoteQuantity {...participation} />
+                            {console.log(participation)}
+                            {participation.decision && <PollVoteDecision vote={participation.decision} />}
+                            <ResultTag {...participation} />
+                        </div>
                     </div>
                     <div class="grid-container">
                         <div class="header">Últimas participações:</div>
+                        <List
+                            dataSource={participation}
+                            renderItem={(user) => (
+                                <List.Item key={user.id}>
+                                    <Avatar src={user.photo} size="small" />
+                                    <p>{user.creatorName}</p>
+                                    <p>{user.email}</p>
+                                    <PollVoteDecision {...user} />
+                                </List.Item>
+                            )}
+                        ></List>
                     </div>
                 </div>
             </div>
